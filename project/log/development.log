@@ -508,3 +508,153 @@ Processing by UsersController#create as */*
 Completed 200 OK in 111ms (Views: 12.4ms | ActiveRecord: 75.7ms)
 
 
+Started POST "/users" for 127.0.0.1 at 2018-05-07 15:17:57 -0700
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"'FirstUser'"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 102ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordInvalid (Validation failed: Email can't be blank):
+  
+app/controllers/users_controller.rb:14:in `create'
+Started POST "/users" for 127.0.0.1 at 2018-05-07 15:18:35 -0700
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"'FirstUser'"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 21ms (Views: 0.2ms | ActiveRecord: 9.4ms)
+
+
+Started POST "/users/2" for 127.0.0.1 at 2018-05-07 15:21:53 -0700
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"'FirstUser'"}, "id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 33ms (Views: 0.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2018-05-07 15:22:03 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 1.8ms)
+
+
+Started PUT "/users/1" for 127.0.0.1 at 2018-05-07 15:24:22 -0700
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"name"=>"'NewFirstUser'"}, "email"=>"'email_2.0@gmail.com'", "id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "users" SET "name" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["name", "'NewFirstUser'"], ["updated_at", "2018-05-07 22:24:22.291625"], ["id", 1]]
+  [1m[35m (40.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 63ms (Views: 0.4ms | ActiveRecord: 50.6ms)
+
+
+Started PUT "/users/1" for 127.0.0.1 at 2018-05-07 15:25:05 -0700
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"name"=>"'NewFirstUser'", "email"=>"'email20@gmail.com'"}, "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["email", "'email20@gmail.com'"], ["updated_at", "2018-05-07 22:25:05.352803"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+
+
+Started PUT "/users/5" for 127.0.0.1 at 2018-05-07 15:25:17 -0700
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"name"=>"'NewFirstUser'", "email"=>"'email20@gmail.com'"}, "id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=5):
+  
+app/controllers/users_controller.rb:23:in `update'
+Started DELETE "/users/2" for 127.0.0.1 at 2018-05-07 15:26:14 -0700
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"name"=>"'NewFirstUser'", "email"=>"'email20@gmail.com'"}, "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 13ms (Views: 0.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2018-05-07 15:26:23 -0700
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (0.1ms)
+Completed 200 OK in 17ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-05-07 15:26:31 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 404 Not Found in 5ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  
+app/controllers/users_controller.rb:18:in `show'
+Started GET "/users/1" for 127.0.0.1 at 2018-05-07 15:26:37 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2018-05-07 15:26:43 -0700
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-05-07 15:27:00 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  
+app/controllers/users_controller.rb:18:in `show'
+Started GET "/users/2" for 127.0.0.1 at 2018-05-07 15:27:17 -0700
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 404 Not Found in 13ms (ActiveRecord: 7.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  
+app/controllers/users_controller.rb:19:in `show'
+Started GET "/users/" for 127.0.0.1 at 2018-05-07 15:27:19 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 11ms (Views: 8.5ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/users/" for 127.0.0.1 at 2018-05-07 15:28:04 -0700
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"'NewSecondUser'", "email"=>"'email30@gmail.com'"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "'NewSecondUser'"], ["email", "'email30@gmail.com'"], ["created_at", "2018-05-07 22:28:04.008852"], ["updated_at", "2018-05-07 22:28:04.008852"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2018-05-07 15:28:08 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
