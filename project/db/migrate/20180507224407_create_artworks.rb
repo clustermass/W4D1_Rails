@@ -1,7 +1,7 @@
 class CreateArtworks < ActiveRecord::Migration[5.1]
   def change
 
-    drop_table :users
+    
     create_table :users do |t|
       t.string :username, null: false
       t.timestamps
@@ -14,7 +14,7 @@ class CreateArtworks < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    create_table :artworks_shares do |t|
+    create_table :artwork_shares do |t|
       t.integer :artwork_id, null: false
       t.integer :viewer_id, null: false
       t.timestamps
@@ -23,9 +23,9 @@ class CreateArtworks < ActiveRecord::Migration[5.1]
     add_index :users, :username, unique: true
     add_index :artworks, :artist_id
     add_index :artworks, [:artist_id, :title], unique: true
-    add_index :artworks_shares, [:artwork_id, :viewer_id], unique: true
-    add_index :artworks_shares, :artwork_id
-    add_index :artworks_shares, :viewer_id
+    add_index :artwork_shares, [:artwork_id, :viewer_id], unique: true
+    add_index :artwork_shares, :artwork_id
+    add_index :artwork_shares, :viewer_id
 
 
   end
